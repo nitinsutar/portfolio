@@ -21,14 +21,14 @@ const navItems = [
 ];
 
 function useActiveSection(sectionIds){const [active,setActive]=useState(sectionIds[0]);useEffect(()=>{const obsrs=[];sectionIds.forEach(id=>{const el=document.getElementById(id);if(!el)return;const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)setActive(id);});},{rootMargin:"-40% 0px -55% 0px",threshold:[0,0.25,0.5,1]});obs.observe(el);obsrs.push(obs);});return()=>obsrs.forEach(o=>o.disconnect());},[sectionIds]);return active;}
-function enableSmoothAnchors(){const handler=(e)=>{const a=e.target.closest(\"a[href^='#']\");if(!a)return;const id=a.getAttribute(\"href\").slice(1);const t=document.getElementById(id);if(t){e.preventDefault();t.scrollIntoView({behavior:\"smooth\",block:\"start\"});}};document.addEventListener(\"click\",handler);return()=>document.removeEventListener(\"click\",handler);}
+function enableSmoothAnchors(){const handler=(e)=>{const a=e.target.closest("a[href^='#']");if(!a)return;const id=a.getAttribute("href").slice(1);const t=document.getElementById(id);if(t){e.preventDefault();t.scrollIntoView({behavior:"smooth",block:"start"});}};document.addEventListener("click",handler);return()=>document.removeEventListener("click",handler);}
 
 export default function App(){
   const pageRef=useRef(null);
   const {scrollYProgress}=useScroll({container:pageRef});
-  const progressWidth=useTransform(scrollYProgress,[0,1],[\"0%\",\"100%\"]);
+  const progressWidth=useTransform(scrollYProgress,[0,1],["0%","100%"]);
   const yParallax=useTransform(scrollYProgress,[0,1],[0,-120]);
-  const active=useActiveSection([\"about\",\"projects\",\"contact\"]);
+  const active=useActiveSection(["about","projects","contact"]);
 
   useEffect(()=>{const cleanup=enableSmoothAnchors();return cleanup;},[]);
 
@@ -40,7 +40,7 @@ export default function App(){
       <div className="mx-auto max-w-6xl px-4"><div className="flex h-16 items-center justify-between">
         <a href="#about" className="font-semibold tracking-wide text-white hover:opacity-90">NS</a>
         <nav className="hidden gap-6 md:flex">{navItems.map(n=>(
-          <a key={n.id} href={`#${n.id}`} className={`text-sm transition-colors ${active===n.id?\"text-white\":\"text-white/60 hover:text-white\"}`}>{n.label}</a>
+          <a key={n.id} href={`#${n.id}`} className={`text-sm transition-colors ${active===n.id?"text-white":"text-white/60 hover:text-white"}`}>{n.label}</a>
         ))}</nav>
         <a href="#contact" className="rounded-full border border-white/15 px-3 py-1.5 text-sm text-white hover:bg-white hover:text-black transition">Contact</a>
       </div></div>
