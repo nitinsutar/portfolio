@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// Build-safe path helper (works with Vercel/Vite base)
+// Build-safe path helper (Vite/Vercel)
 const asset = (p) => `${import.meta.env.BASE_URL || "/"}${p.replace(/^\//,"")}`;
 
-// Projects
 const projects = [
   { title: "OutlookMS", description: "Corporate presence done right. Straightforward, fast, professional.", tags: ["Corporate","Web","B2B"], link: "https://www.outlookms.com/", preview: "previews/outlookms.png" },
   { title: "Raj Jewellers", description: "Luxury jewellery site—craftsmanship meets clean modern web.", tags: ["Branding","Web Design","Luxury"], link: "https://www.rajjewellersmumbai.com/", preview: "previews/rajjewellers.png" },
@@ -42,7 +41,7 @@ export default function App(){
         <nav className="hidden gap-6 md:flex">{navItems.map(n=>(
           <a key={n.id} href={`#${n.id}`} className={`text-sm transition-colors ${active===n.id?"text-white":"text-white/60 hover:text-white"}`}>{n.label}</a>
         ))}</nav>
-        <a href="#contact" className="rounded-full border border-white/15 px-3 py-1.5 text-sm text-white hover:bg-white hover:text-black transition">Contact</a>
+        <a href="#contact" className="md:hidden rounded-full border border-white/15 px-3 py-1.5 text-sm text-white hover:bg-white hover:text-black transition">Let’s talk</a>
       </div></div>
     </header>
 
@@ -64,9 +63,7 @@ export default function App(){
         <div className="md:col-span-3">
           <h2 className="text-2xl font-semibold md:text-3xl">About</h2>
           <p className="mt-4 text-neutral-300">I team up with founders to go from idea → MVP → scale at speed. I obsess over micro-interactions, sharp copy, and performance. The vibe: minimal, bold, and a little bit playful.</p>
-          <ul className="mt-6 grid gap-2 text-sm text-white/80 md:grid-cols-2">
-            <li>⚡ Rapid prototyping (days, not months)</li><li>🎯 Conversion-focused UX that sells</li><li>🧩 Design systems that age well</li><li>🚀 SEO + Web perf baked in</li>
-          </ul>
+          <ul className="mt-6 grid gap-2 text-sm text-white/80 md:grid-cols-2"><li>⚡ Rapid prototyping (days, not months)</li><li>🎯 Conversion-focused UX that sells</li><li>🧩 Design systems that age well</li><li>🚀 SEO + Web perf baked in</li></ul>
         </div>
         <div className="md:col-span-2">
           <div className="rounded-2xl border border-white/10 bg-neutral-900/60 p-6">
@@ -113,10 +110,7 @@ export default function App(){
           <textarea rows={4} placeholder="Project brief (what, when, budget)" className="rounded-xl border border-white/10 bg-neutral-950/60 px-4 py-3 outline-none placeholder:text-white/40 focus:border-white/30 md:col-span-2"/>
           <button type="button" onClick={() => alert("Thanks! I'll be in touch.")} className="rounded-xl bg-white px-5 py-3 text-black hover:opacity-90 md:col-span-2">Send inquiry</button>
         </form>
-        <div className="mt-6 text-sm text-white/70 space-y-2">
-          <div>📞 Phone: <a href="tel:+919892223119" className="underline">+91 9892223119</a></div>
-          <div>✉️ Email: <a href="mailto:nitinnsutar22@gmail.com" className="underline">nitinnsutar22@gmail.com</a></div>
-        </div>
+        <div className="mt-6 text-sm text-white/70 space-y-2"><div>📞 Phone: <a href="tel:+919892223119" className="underline">+91 9892223119</a></div><div>✉️ Email: <a href="mailto:nitinnsutar22@gmail.com" className="underline">nitinnsutar22@gmail.com</a></div></div>
       </div>
     </section>
 
